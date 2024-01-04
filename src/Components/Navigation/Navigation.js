@@ -7,6 +7,7 @@ function Navigation(){
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/CreateArticle">Tworzenie Posta</Link>
+                <Link to="Login">Logowanie</Link>
             </nav>
         );
 }
