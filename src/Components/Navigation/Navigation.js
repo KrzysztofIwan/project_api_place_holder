@@ -5,7 +5,7 @@ import './Navigation.css';
 function Navigation(){    
         return(
             <nav>
-                <Link to="/">Home</Link>
+                <Link to="/">Strona Główna</Link>
                 <Link to="/CreateArticle">Tworzenie Posta</Link>
                 <Link to="Login">Logowanie</Link>
             </nav>

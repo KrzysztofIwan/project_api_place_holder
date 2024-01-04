@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './Login.css';
 
 function Login(){
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+    let [userName, setUserName] = useState('');
+    let [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,6 +20,12 @@ function Login(){
           }
       
           return errors;
+    }
+
+    const logoutMethod = () =>{
+        setLogged(false);
+        userName = setUserName('');
+        password = setPassword('');
     }
 
     const loginMethod = (event) => {
@@ -53,11 +59,14 @@ function Login(){
         }
         fetchData();
     }, [])
-    
+
     return(
         <div className="login-container">
             {logged ?(
-                <h2>Zostałeś zalogowany</h2>
+                <>
+                <h2>Witaj ponownie {userName}</h2>
+                <button onClick={logoutMethod}>Wyloguj</button>
+                </>                
             ):( 
             <>
             <h2>Strona Logowania</h2>
