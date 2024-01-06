@@ -8,6 +8,7 @@ function Navigation(){
                 <Link to="/">Strona Główna</Link>
                 <Link to="/CreateArticle">Tworzenie Posta</Link>
                 <Link to="Login">Logowanie</Link>
+                <Link to="Searcher">Wyszukiwanie zdjęć i użytkowników</Link>
             </nav>
         );
 }
