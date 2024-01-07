@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
+import { useCookies } from 'react-cookie';
 import './Login.css';
 
-function Login(){
+function Login({onLogin}){
     let [userName, setUserName] = useState('');
     let [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [logged, setLogged] = useState(false);
+    const [cookies, removeCookie] = useCookies(['userData']);
 
     const checkFormat = () => {
         const errors = {};
@@ -24,16 +26,17 @@ function Login(){
 
     const logoutMethod = () =>{
         setLogged(false);
-        userName = setUserName('');
-        password = setPassword('');
+        removeCookie('userData');
+        setUserName('');
+        setPassword('');
     }
 
     const loginMethod = (event) => {
         event.preventDefault();
         const errors = checkFormat();
         if(Object.keys(errors).length === 0){
-            console.log('nazwa: ' ,{userName}, ' hasło: ', {password});
-            if(data.some(item => item.name === userName)){
+            if(data.some(item => item.name === userName)){                
+                onLogin({userName, password});
                 setLogged(true);
             }
             else{                
@@ -62,9 +65,9 @@ function Login(){
 
     return(
         <div className="login-container">
-            {logged ?(
+            {cookies.userData?.userName != undefined ?(
                 <>
-                <h2>Witaj ponownie {userName}</h2>
+                <h2>Witaj ponownie {cookies.userData?.userName}</h2>
                 <button onClick={logoutMethod}>Wyloguj</button>
                 </>                
             ):( 
@@ -98,7 +101,7 @@ function Login(){
 			        </label>
 		        </div>
 		        <div className="form-group">
-			        <button type="submit">Zaloguj</button>
+			        <button className='button-login' type="submit">Zaloguj</button>
 		        </div>
 	        </form>    
             </>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Galeria(props) {
+function Home(props) {
   const [photos, setPhotos] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
@@ -92,4 +92,4 @@ const fetchPhotosForAlbum = async (albumId) => {
     } 
         
         
-export default Galeria;
+export default Home;
