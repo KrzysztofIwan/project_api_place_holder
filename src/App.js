@@ -14,7 +14,6 @@ function App() {
   const [cookies, setCookie] = useCookies(["userData"]);
 
   function handleLogin(user) {
-    console.log(typeof cookies);
     setCookie("userData", user, { path: "/" });
   }
 

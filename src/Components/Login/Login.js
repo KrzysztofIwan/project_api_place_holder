@@ -8,24 +8,22 @@ function Login({onLogin}){
     const [errors, setErrors] = useState({});
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [logged, setLogged] = useState(false);
     const [cookies, removeCookie] = useCookies(['userData']);
+    const [UserDataProfile, setUserDataProfile] = useState([]);
 
     const checkFormat = () => {
         const errors = {};
         if (!userName.trim()) {
             errors.userName = 'Nie podano lub zła nazwa';
-          }
-      
-          if (!password.trim()) {
+        }       
+        
+        if (!password.trim()) {
             errors.password = 'Nie podano lub złe hasło';
-          }
-      
-          return errors;
+        }     
+        return errors;
     }
 
     const logoutMethod = () =>{
-        setLogged(false);
         removeCookie('userData');
         setUserName('');
         setPassword('');
@@ -34,13 +32,11 @@ function Login({onLogin}){
     const loginMethod = (event) => {
         event.preventDefault();
         const errors = checkFormat();
-        if(Object.keys(errors).length === 0){
-            if(data.some(item => item.name === userName)){                
-                onLogin({userName, password});
-                setLogged(true);
-            }
-            else{                
-                setLogged(false);
+        if(Object.keys(errors).length === 0){            
+            if(data.some(item => item.username === userName)){                
+                setUserDataProfile(data.find(x => x.username === userName));
+                let userId = UserDataProfile['id'];
+                onLogin({ userName, password, userId});
             }
         }
         else{
@@ -65,7 +61,7 @@ function Login({onLogin}){
 
     return(
         <div className="login-container">
-            {cookies.userData?.userName != undefined ?(
+            {cookies.userData?.userName !== undefined ?(
                 <>
                 <h2>Witaj ponownie {cookies.userData?.userName}</h2>
                 <button onClick={logoutMethod}>Wyloguj</button>
