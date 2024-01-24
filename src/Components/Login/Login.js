@@ -9,7 +9,6 @@ function Login({onLogin}){
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [cookies, removeCookie] = useCookies(['userData']);
-    const [UserDataProfile, setUserDataProfile] = useState([]);
 
     const checkFormat = () => {
         const errors = {};
@@ -34,9 +33,17 @@ function Login({onLogin}){
         const errors = checkFormat();
         if(Object.keys(errors).length === 0){            
             if(data.some(item => item.username === userName)){                
-                setUserDataProfile(data.find(x => x.username === userName));
-                let userId = UserDataProfile['id'];
-                onLogin({ userName, password, userId});
+                const UserDataJson = (data.find(x => x.username === userName));
+                if(UserDataJson)
+                {
+                    let userId = UserDataJson.id;
+                    console.log("ID użytkownika: ", userId);
+                    onLogin({ userName, password, userId});
+                }
+               else
+               {
+                    console.log("nie udało sie zalogować");
+               }
             }
         }
         else{
@@ -64,7 +71,7 @@ function Login({onLogin}){
             {cookies.userData?.userName !== undefined ?(
                 <>
                 <h2>Witaj ponownie {cookies.userData?.userName}</h2>
-                <button onClick={logoutMethod}>Wyloguj</button>
+                <button className='button-logout' onClick={logoutMethod}>Wyloguj</button>
                 </>                
             ):( 
             <>

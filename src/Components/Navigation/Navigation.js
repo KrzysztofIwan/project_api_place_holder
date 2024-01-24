@@ -4,7 +4,7 @@ import './Navigation.css';
 import { useCookies } from 'react-cookie';
 
 function Navigation() {
-  const [cookies, setCookies] = useCookies(['userData']);
+  const [cookies] = useCookies(['userData']);
   const [logged, setLogged] = useState(false);
 
   useEffect(() => {

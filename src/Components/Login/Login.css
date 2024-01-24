@@ -27,7 +27,7 @@ input{
     margin-top: 5px;
 }
   
-.button-login{
+.button-login ,.button-logout{
     padding: 10px;
     background-color: #4caf50;
     color: white;
