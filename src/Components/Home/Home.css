@@ -1,0 +1,52 @@
+.select-users-albums {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+}
+
+
+.select-users-albums options{
+    background-color: #4caf50;
+    color: white;
+}
+.albums{
+    margin-right:10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.button-return{
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+  
+  
+.show-photo {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:space-evenly;
+  }
+.button-photo-delete{
+    display: flex;
+    margin-bottom: 10px;
+    margin-left: 250px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Home.css';
 
 function Home() {
   const [photos, setPhotos] = useState([]);
@@ -50,10 +51,14 @@ function Home() {
     fetchPhotosForAlbum(albumId);
   }
 
+  const handleDeletePhoto = async (photoId) => {
+    const updatedPhotos = photos.filter((photo) => photo.id !== photoId);
+    setPhotos(updatedPhotos);
+  }
   return (
         <div>
           <h2>Galeria</h2>
-          <select onChange={(e) => setSelectedUser(e.target.value)}>
+          <select className='select-users-albums' onChange={(e) => setSelectedUser(e.target.value)}>
             <option value="">Wybierz użytkownika</option>
             {users.map(user =>(
               <option key={user.id} value={user.id}>
@@ -62,26 +67,25 @@ function Home() {
             ))}
           </select>
 
-
-          {selectedAlbum ? (
+        {selectedAlbum ? (
           <>
-          <button onClick={() => setSelectedAlbum(null)}>Powrót do albumów</button>
+          <button className='button-return' onClick={() => setSelectedAlbum(null)}>Powrót do albumów</button>
           <h2>Zdjęcia w albumie {selectedAlbum}</h2>
-            <ul>
+          <div className='show-photo'>
               {photos.map(photo => (
-                <li key={photo.id}>
-                  <img src={photo.url} alt="Błąd ładowania"/>
-                  
-                </li>
+                <div className='photo' key={photo.id}>
+                  <img src={photo.url} alt={photo.title}/>
+                  <button className='button-photo-delete' onClick={() => handleDeletePhoto(photo.id)}>Usuń zdjęcie</button>  
+                </div>
               ))}
-            </ul>
+          </div>
           </>
       ) : (
         <>
         <h2>Albums</h2>
         <ul>
           {albums.map(album => (
-            <button key={album.id} onClick={() => handleAlbumClick(album.id)}>{album.title}</button>
+            <button className='albums' key={album.id} onClick={() => handleAlbumClick(album.id)}>{album.title}</button>
           ))}
         </ul>
         </>

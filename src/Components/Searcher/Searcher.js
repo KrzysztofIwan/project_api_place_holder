@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import './Searcher.css';
 const PhotoSearchEngine = () => {
     const [photos, setPhotos] = useState([]);
     const [selectedPhotoId, setSelectedPhotoId] = useState('');
@@ -42,7 +42,7 @@ const PhotoSearchEngine = () => {
     return (
         <div>
             <h2>Wyszukaj zdjęcie</h2>
-            <select onChange={(e) => setSelectedPhotoId(e.target.value)}>
+            <select className="select-searcher" onChange={(e) => setSelectedPhotoId(e.target.value)}>
                 <option value="" disabled>Wybierz ID</option>
                 {photos.map((photo) => (
                     <option key={photo.id} value={photo.id}>
@@ -50,7 +50,7 @@ const PhotoSearchEngine = () => {
                     </option>
                 ))}
             </select>
-            <button onClick={PhotoSearch}>Wyszukaj</button>
+            <button className="searcher" onClick={PhotoSearch}>Wyszukaj</button>
 
             {photoData && (
                 <div>
@@ -62,7 +62,7 @@ const PhotoSearchEngine = () => {
 
             )}
             <h2>Wyszukaj użytkownika</h2>
-            <select onChange={(e) => setSelectedUsersId(e.target.value)}>
+            <select className="select-searcher" onChange={(e) => setSelectedUsersId(e.target.value)}>
                 <option value="" disabled>Wybierz ID</option>
                 {users.map((users) => (
                     <option key={users.id} value={users.id}>
@@ -70,30 +70,59 @@ const PhotoSearchEngine = () => {
                     </option>
                 ))}
             </select>
-            <button onClick={UserSearch}>Wyszukaj</button>
+            <button className="searcher" onClick={UserSearch}>Wyszukaj</button>
 
             {usersData && (
                 <div>
                     
-                    <h3>Szczegóły użytkownika</h3>
-                    <p>ID: {usersData.id}</p>
-                    <p>Imię: {usersData.name}</p>
-                    <p>Nick: {usersData.username}</p>
-                    <p>E-Mail: {usersData.email}</p>
-                    <h5>Adres zamieszkania:</h5>
-                    <p>Ulica: {usersData.address.street}</p>
-                    <p>Nr. mieszkania: {usersData.address.suite}</p>
-                    <p>Miasto: {usersData.address.city}</p>
-                    <p>Kod pocztowy: {usersData.address.zipcode}</p>
-                    <h6>Współrzędne:</h6>
-                    <p>Szerokość geograficzna: {usersData.address.geo.lat}</p>
-                    <p>Długość geograficzna: {usersData.address.geo.lng}</p>
-                    <p>Numer telefonu: {usersData.phone}</p>
-                    <p>Adres strony internetowej: {usersData.website}</p>
-                    <h5>Miejsce pracy</h5>
-                    <p>Nazwa firmy: {usersData.company.name}</p>
-                    <p>Slogan firmy: {usersData.company.catchPhrase}</p>
-                    <p>Działalność biznesowa: {usersData.company.bs}</p>
+                    <ul className="profile-list">
+                    <li className="profile-list-item">
+                        <h4>Imie i nazwisko</h4>
+                        <p>{usersData.name}</p>                      
+                    </li>
+                    <li className="profile-list-item">
+                        <h4>Email</h4>
+                        <p>{usersData.email}</p>                        
+                    </li>
+                    <li className="profile-list-item">
+                        <ul className="address-list">
+                            <li className="address-list-item">
+                                <h4>Adres domowy</h4>
+                                <p>Ulica: {usersData.address.street}</p>
+                                <p>Suite: {usersData.address.suite}</p>
+                                <p>Miasto: {usersData.address.city}</p>
+                                <p>Kod pocztowy: {usersData.address.zipcode}</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li className="profile-list-item">
+                        <h4>Telefon</h4>
+                        <p>{usersData.phone}</p>
+                    </li>
+                    <li className="profile-list-item">
+                        <h4>Strona internetowa</h4> 
+                        <p>{usersData.website}</p>
+                    </li>
+                    <div className="company-data">
+                        <li> 
+                            <h2>Dane firmy</h2>
+                            <ul className="profile-list">
+                                <li className="profile-list-item">
+                                    <h4>Nazwa</h4>
+                                    <p>{usersData.company.name}</p>
+                                </li>
+                                <li className="profile-list-item">
+                                    <h4>Fraza firmy</h4>
+                                   <p>{usersData.company.catchPhrase}</p> 
+                                </li>
+                                <li className="profile-list-item">
+                                    <h4>BS</h4>
+                                    <p>{usersData.company.bs}</p>
+                                </li>
+                            </ul>
+                        </li>    
+                    </div>                    
+                </ul>
                 </div>
             )}
         </div>
