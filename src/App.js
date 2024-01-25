@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Navigation from './Components/Navigation/Navigation';
 import Footer from './Components/Footer/Footer';
-import CreateArticle from './Components/CreateArticle/CreateArticle';
+import Posts from './Components/Posts/Posts';
 import Login from './Components/Login/Login';
 import Searcher from './Components/Searcher/Searcher';
 import UserProfil from './Components/UserProfil/UserProfil';
@@ -23,7 +23,7 @@ function App() {
       <Navigation/>
       <Routes>
         <Route exact path= "/" element={<Home/>}/>
-        <Route path="/CreateArticle" element={<CreateArticle/>}/>
+        <Route path="/Posts" element={<Posts/>}/>
         <Route path="/Login" element={<Login onLogin={handleLogin}/>}/>
         <Route path="/UserProfil" element={<UserProfil/>}/>
         <Route path='/Searcher' element={<Searcher/>}/>

@@ -17,7 +17,7 @@ function Navigation() {
   return (
     <nav>
       <Link to="/">Strona Główna</Link>
-      <Link to="/CreateArticle">Tworzenie Posta</Link>
+      <Link to="/Posts">Posty</Link>
       {logged ? (
         <>
         <Link to="UserProfil">Profil</Link>

@@ -1,0 +1,27 @@
+    .post {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+    .post h3 {
+    color: #333;
+  }
+  
+    .post p {
+    color: #666;
+  }
+
+    .post-user-select{
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .post-user-select-options{
+    background-color: #4caf50;
+    color: white;
+}

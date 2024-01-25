@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-function Home(props) {
+function Home() {
   const [photos, setPhotos] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState('');
 
@@ -16,6 +15,7 @@ function Home(props) {
     }
     fetchAlbums();
   }, []);
+
   useEffect(() => {
     async function fetchUsers(){
       const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -37,19 +37,19 @@ function Home(props) {
     }
     fetchAlbums();
   }, [selectedUser]);
-const fetchPhotosForAlbum = async (albumId) => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/photos');
-  const data = await response.json();
-  const filteredPhotos = data.filter(photo => photo.albumId === albumId);
-  setPhotos(filteredPhotos);
-};
-
-
   
+  const fetchPhotosForAlbum = async (albumId) => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/photos');
+    const data = await response.json();
+    const filteredPhotos = data.filter(photo => photo.albumId === albumId);
+    setPhotos(filteredPhotos);
+  };
+
   const handleAlbumClick = (albumId) => {
     setSelectedAlbum(albumId);
     fetchPhotosForAlbum(albumId);
   }
+
   return (
         <div>
           <h2>Galeria</h2>
@@ -70,7 +70,7 @@ const fetchPhotosForAlbum = async (albumId) => {
             <ul>
               {photos.map(photo => (
                 <li key={photo.id}>
-                  <img src={photo.url}/>
+                  <img src={photo.url} alt="Błąd ładowania"/>
                   
                 </li>
               ))}
